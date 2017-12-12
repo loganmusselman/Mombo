@@ -1,0 +1,58 @@
+{
+  "User": [
+   
+  { 
+
+    id: 0;
+    username: "Jackie";
+    password: "password";
+    birthday: "Oct 1, 1994";
+    numkids: 2;
+    profileImg: "/assets/#";
+    description: "Description goes here";
+    pics: Pictures[
+      {
+        image: "/assets/#";
+        description: "Description goes here";
+        numLikes: 24;
+        numFavs: 3;
+        comments: Comment[
+          {
+            description: "Description goes here";
+            author: "user1";
+            date: "Today";
+          },
+          {
+            description: "Description goes here";
+            author: "user1";
+            date: "Today";
+          }
+        ];
+      }
+    ];
+    feed: Status[
+        {
+          description: "My first update!";
+          numLikes: 12;
+          numFavs: 1;
+          comments: Comment[
+            {
+              
+            description: "Description goes here";
+            author: "user1";
+            date: "Today";
+            }
+
+          ];
+          date: "Today";
+        }
+    ];
+    messages: Message[];
+    startDate: "Yesterday";
+    numFriends: 28;
+    numMombo: 4;
+
+  }
+
+  ]
+}

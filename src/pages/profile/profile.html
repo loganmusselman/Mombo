@@ -1,0 +1,66 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+<ion-card>
+  <ion-card-content>
+  	<ion-card-header>
+  		Jackie's Profile
+  	</ion-card-header>
+  	<img src="/assets/imgs/jackie.jpg" col-8/>
+    <ion-card-title>
+       Jackie
+    </ion-card-title>
+    <p>
+      My name is Jackie. I have one baby girl, and one baby on the way! I am excited to meet everyone on here and look forward to many play dates in the future. My husband designed this application, so if you have any feedback or comments feel free to message me and I will forward them to him.
+    </p>
+  </ion-card-content>
+  <ion-row>
+    <ion-col>
+      <button ion-button icon-left clear small>
+        <ion-icon name="thumbs-up"></ion-icon>
+        <div>12 Likes</div>
+      </button>
+    </ion-col>
+    <ion-col>
+      <button ion-button icon-left clear small>
+        <ion-icon name="text"></ion-icon>
+        <div>Message me</div>
+      </button>
+    </ion-col>
+    <ion-col>
+    	<button ion-button icon-center clear small>
+    		<ion-icon name="flower-outline"></ion-icon>
+    		<div>Lets Mombo!</div>
+    	</button>
+    </ion-col>
+  </ion-row>
+
+   <ion-fab bottom right [hidden]="mombo">
+      <button ion-fab (click)="goMombo()">
+        <ion-icon name="flower-outline"></ion-icon>
+      </button>
+    </ion-fab>
+    <ion-fab bottom right *ngIf="mombo">
+      <button ion-fab>
+        <ion-icon name="flower"></ion-icon>
+      </button>
+    </ion-fab>
+
+</ion-card>
+
+</ion-content>
