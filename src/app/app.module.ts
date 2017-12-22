@@ -1,17 +1,24 @@
+//App Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-
+import { HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
+//Pages
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { ProfilePage } from '../pages/profile/profile';
-
+//Ionic Plugins
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { LocalNotifications } from '@ionic-native/local-notifications';
+//Providers
 import { MomboProvider } from '../providers/mombo/mombo';
 import { UserProvider } from '../providers/user/user';
 import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-httpmsg';
+//Base URL
+import { baseURL } from '../shared/baseurl';
 
 @NgModule({
   declarations: [
@@ -19,10 +26,14 @@ import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-htt
     HomePage,
     ListPage,
     ProfilePage
+    
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
+    HttpClientModule
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -37,7 +48,10 @@ import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-htt
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MomboProvider,
     UserProvider,
-    ProcessHttpmsgProvider
+    ProcessHttpmsgProvider,
+    LocalNotifications,
+    { provide: 'BaseURL', useValue: baseURL },
+    
   ]
 })
 export class AppModule {}

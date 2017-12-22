@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Http, Response } from '@angular/http';
+import { Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/toPromise';
 
 
 /*
@@ -14,16 +17,17 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class ProcessHttpmsgProvider {
 
-  constructor(public http: Http) {
+  constructor(public http: HttpClient) {
     console.log('Hello ProcessHttpmsgProvider Provider');
   }
 
-  public extractData(res: Response){
-    let body = res.json();
+
+  public extractData(res: Response) {
+    let body = res;
     return body || { };
   }
 
-  public handleError (error: Response | any){
+  public handleError(error: Response | any) {
     let errMsg: string;
 
     if(error instanceof Response){

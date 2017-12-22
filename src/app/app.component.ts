@@ -24,7 +24,7 @@ export class MyApp {
     this.pages = [
       { title: 'Mombo!', component: HomePage },
       { title: 'Feed', component: ListPage },
-      { title: 'My Profile', component: ProfilePage }
+      { title: 'Profile', component: ProfilePage }
     ];
 
   }

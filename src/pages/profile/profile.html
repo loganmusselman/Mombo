@@ -16,51 +16,62 @@
 
 <ion-content padding>
 
-<ion-card>
+<ion-card *ngIf="users"> 
   <ion-card-content>
   	<ion-card-header>
-  		Jackie's Profile
+  		<img src="{{BaseURL + users[0].profileImg}}" />
   	</ion-card-header>
-  	<img src="/assets/imgs/jackie.jpg" col-8/>
+  	
     <ion-card-title>
-       Jackie
+       {{ users[0].username }}
     </ion-card-title>
     <p>
-      My name is Jackie. I have one baby girl, and one baby on the way! I am excited to meet everyone on here and look forward to many play dates in the future. My husband designed this application, so if you have any feedback or comments feel free to message me and I will forward them to him.
+      {{ users[0].description }}
     </p>
   </ion-card-content>
   <ion-row>
     <ion-col>
-      <button ion-button icon-left clear small>
+      <button class="button" ion-button icon-left clear small>
         <ion-icon name="thumbs-up"></ion-icon>
-        <div>12 Likes</div>
+        <div>Follow</div>
       </button>
     </ion-col>
     <ion-col>
-      <button ion-button icon-left clear small>
+      <button class="button" ion-button icon-left clear small>
         <ion-icon name="text"></ion-icon>
         <div>Message me</div>
       </button>
     </ion-col>
+    <ion-row>
     <ion-col>
-    	<button ion-button icon-center clear small>
+    	<button class="momboButton" ion-button icon-center clear small (click)="goMombo()">
     		<ion-icon name="flower-outline"></ion-icon>
     		<div>Lets Mombo!</div>
     	</button>
     </ion-col>
   </ion-row>
-
-   <ion-fab bottom right [hidden]="mombo">
-      <button ion-fab (click)="goMombo()">
-        <ion-icon name="flower-outline"></ion-icon>
-      </button>
-    </ion-fab>
-    <ion-fab bottom right *ngIf="mombo">
-      <button ion-fab>
-        <ion-icon name="flower"></ion-icon>
-      </button>
-    </ion-fab>
-
+  </ion-row>
 </ion-card>
+
+<ion-card *ngIf="users">
+  <ion-card-title >
+    My Feed
+  </ion-card-title>
+  <ion-card-content *ngFor="let user of users">
+    <ion-row>
+      <ion-col col-3>
+        {{ users[0].feed[0].comments.author }}
+      </ion-col>
+      <ion-col col-8>
+        {{ users[0].feed[0].comments.description }}
+      </ion-col>
+    </ion-row>
+  </ion-card-content>
+</ion-card>
+
+<div [hidden]="users || errMess">
+    <ion-spinner></ion-spinner>
+    <h4>Loading . . . Please Wait</h4>
+</div>
 
 </ion-content>
