@@ -9,6 +9,9 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { ProfilePage } from '../pages/profile/profile';
+import { MyPostsPage } from '../pages/my-posts/my-posts';
+import { FavoritesPage } from '../pages/favorites/favorites';
+
 //Ionic Plugins
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,15 +20,19 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
 import { MomboProvider } from '../providers/mombo/mombo';
 import { UserProvider } from '../providers/user/user';
 import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-httpmsg';
+import { MyPostsProvider } from '../providers/my-posts/my-posts';
 //Base URL
 import { baseURL } from '../shared/baseurl';
+import { FavoritesProvider } from '../providers/favorites/favorites';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    ProfilePage
+    ProfilePage,
+    MyPostsPage,
+    FavoritesPage
     
   ],
   imports: [
@@ -40,7 +47,9 @@ import { baseURL } from '../shared/baseurl';
     MyApp,
     HomePage,
     ListPage,
-    ProfilePage
+    ProfilePage,
+    MyPostsPage,
+    FavoritesPage
   ],
   providers: [
     StatusBar,
@@ -50,7 +59,9 @@ import { baseURL } from '../shared/baseurl';
     UserProvider,
     ProcessHttpmsgProvider,
     LocalNotifications,
-    { provide: 'BaseURL', useValue: baseURL },
+    MyPostsProvider,
+    FavoritesProvider,
+    { provide: 'BaseURL', useValue: baseURL }    
     
   ]
 })

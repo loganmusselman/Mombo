@@ -1,13 +1,14 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
+import { HttpClient } from '@angular/common/http';
 
 import { User } from '../../shared/user';
 import { UserProvider } from '../../providers/user/user';
 import { MomboProvider } from '../../providers/mombo/mombo';
-
 import { ProcessHttpmsgProvider } from '../../providers/process-httpmsg/process-httpmsg';
-import { HttpClient } from '@angular/common/http';
+
+import { MyPostsPage } from '../my-posts/my-posts';
 
 import 'rxjs/add/operator/do';
 
@@ -27,6 +28,9 @@ export class ProfilePage implements OnInit {
 
   users: User[];
   userErrMess: string;
+  tab1: any;
+  tab2: any;
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
       public userprovider: UserProvider,
@@ -36,6 +40,9 @@ export class ProfilePage implements OnInit {
       private toastCtrl: ToastController,
       @Inject('BaseURL') private BaseURL ){
 
+
+    this.tab2 = MyPostsPage;
+
   }
 
   ngOnInit() {
@@ -43,9 +50,8 @@ export class ProfilePage implements OnInit {
           .subscribe((users) => {
                   this.users = users
                   console.log(this.users);
-                  console.log(this.users[0].profileImg);
               },
-              errmess => this.userErrMess = < any > errmess);
+              errmess => this.userErrMess = <any>errmess);
   }
 
 
@@ -70,7 +76,7 @@ export class ProfilePage implements OnInit {
   goMombo() {
     console.log('Inviting to Mombo!');
     this.toastCtrl.create({
-      message: 'User added to your mombos!',
+      message: ' added to your mombos!',
       duration: 3000
       }).present();
   }

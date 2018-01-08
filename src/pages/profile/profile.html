@@ -53,25 +53,16 @@
   </ion-row>
 </ion-card>
 
-<ion-card *ngIf="users">
-  <ion-card-title >
-    My Feed
-  </ion-card-title>
-  <ion-card-content *ngFor="let user of users">
-    <ion-row>
-      <ion-col col-3>
-        {{ users[0].feed[0].comments.author }}
-      </ion-col>
-      <ion-col col-8>
-        {{ users[0].feed[0].comments.description }}
-      </ion-col>
-    </ion-row>
-  </ion-card-content>
-</ion-card>
-
 <div [hidden]="users || errMess">
     <ion-spinner></ion-spinner>
     <h4>Loading . . . Please Wait</h4>
 </div>
 
 </ion-content>
+
+<ion-tabs>
+  <ion-tab tabIcon="heart" [root]="tab1"></ion-tab>
+  <ion-tab tabIcon="star" [root]="tab2"></ion-tab>
+</ion-tabs>
+
+

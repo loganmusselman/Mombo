@@ -11,20 +11,20 @@ import 'rxjs/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
 
 /*
-  Generated class for the UserProvider provider.
+  Generated class for the MyPostsProvider provider.
 
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
 @Injectable()
-export class UserProvider {
+export class MyPostsProvider {
 
   constructor(public http: HttpClient) {
-    console.log('Hello UserProvider Provider');
+    console.log('Hello MyPostsProvider Provider');
   }
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(baseURL + 'users')
+  getFeed(): Observable<User> {
+    return this.http.get<User>(baseURL + 'users?feed?')
       .do(data => console.log('All: ' + JSON.stringify(data)))
      .catch(this.handleError);
 
@@ -40,8 +40,5 @@ export class UserProvider {
         console.error(errorMessage);
         return Observable.throw(errorMessage);
     }
-
-
-
 
 }
