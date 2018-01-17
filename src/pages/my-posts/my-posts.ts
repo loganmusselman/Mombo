@@ -40,9 +40,6 @@ export class MyPostsPage implements OnInit{
       public userprovider: UserProvider,
       public toastCtrl: ToastController,
   		@Inject('BaseURL') private BaseURL) {
-  //  this.users = userprovider.getUsers();
-  //  this.favorite = favoritesprovider.isFavorite(this.users);
-
   }
 
   ionViewDidLoad() {
@@ -58,13 +55,18 @@ export class MyPostsPage implements OnInit{
               errmess => this.userErrMess = <any>errmess);
   }
 
-  addToFavorites(){
-    console.log('Adding to Favorites' + this.users.feed);
-    this.favorite = this.favoritesprovider.addFavorites(this.users.feed);
+
+
+  addToFavorites(i){
+
+    console.log('Adding to Favorites ' + this.users[0].feed[i].description);
+    this.favorite = this.favoritesprovider.addFavorites(this.users[0].feed[i]);
+    
     this.toastCtrl.create({
-      message: this.users.feed + 'This post has been added to your favorites!',
+      message: this.users[0].feed[i].description + ' has been added to your favorites!',
       duration: 3000
       }).present();
+
   }
 
 }

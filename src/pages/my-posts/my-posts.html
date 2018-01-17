@@ -17,23 +17,20 @@
 <ion-content padding>
 
 <ion-col col-12 col-lg-4 *ngIf="users">
-    <ion-card *ngFor="let feed of users[0].feed">          
+    <ion-card *ngFor="let feed of users[0].feed; let i = index" [attr.data-index]="i">      
         <ion-item text-wrap>
-          	<h4> {{ feed.description }} </h4>
+          	<h4>{{ feed.description }} </h4>
       	</ion-item>
       	<ion-item>
           <p class="like">
-          	<button ion-button icon-center clear small>
+            <button ion-button icon-center clear small>
 		  		<ion-icon name="ios-happy-outline"></ion-icon>
-		  	</button>
-		  	{{ feed.numLikes }} Likes
-		  </p>
-          <p class="fav">
-          	<button ion-button icon-center clear small (click)="addToFavorites()">
-		  		<ion-icon name="ios-star-outline"></ion-icon>
-		  	</button>
-          	{{ feed.numFavs }} Favorites
-          </p>
+            {{ feed.numLikes }} Likes
+		        </button>
+		      </p>
+          <button ion-button icon-center clear small (click)="addToFavorites(i)">
+            <ion-icon name="ios-star-outline"></ion-icon>
+          </button>
         </ion-item>
     </ion-card>
 </ion-col>

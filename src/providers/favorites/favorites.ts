@@ -17,7 +17,8 @@ import { MyPostsProvider } from '../my-posts/my-posts';
 export class FavoritesProvider {
 
   favorites: Array<any>;
-  users: User;
+  users: User[];
+
 
   constructor(public http: HttpClient,
   	private storage: Storage,
@@ -31,39 +32,39 @@ export class FavoritesProvider {
 
     storage.get('favorites').then(favorites => {
       if(favorites) {
-        console.log(favorites);
         this.favorites = favorites;
+        console.log(this.favorites);
       } else {
         console.log('favorites not defined');
       }
     });
   }
 
-  addFavorites(id: number): boolean {
-    if(!this.isFavorite(id)){
-      this.favorites.push(id);
+  addFavorites(description: string): boolean {
+    if(!this.isFavorite(description)){
+      this.favorites.push(description);
       this.storage.set('favorites', this.favorites);
 
     }
       this.localNotifications.schedule({
-        id: id,
-        text: id + ' added as a favorite successsfully.'
+        description: description,
+        text: description + ' added as a favorite successsfully.'
       });
     console.log('favorites', this.favorites);
     return true;
   }
 
-  isFavorite(id: number): boolean {
-    return this.favorites.some(el => el === id);
+  isFavorite(description: string): boolean {
+    return this.favorites.some(el => el === description);
   }
 
   getFavorites(): Observable<User[]>{
     return this.postsProvider.getFeed()
-      .map(users => users.filter(users => this.favorites.some(el => el === id)));
+      .map(feed => feed.filter(feed => this.favorites.some(el => el === feed.description)));
   }
 
-  deleteFavorite(id: number): Observable<User[]> {
-    let index = this.favorites.indexOf(id);
+  deleteFavorite(description: string): Observable<User[]> {
+    let index = this.favorites.indexOf(description);
     if(index >= 0){
       this.favorites.splice(index, 1);
       this.storage.set('favorites', this.favorites);
@@ -71,10 +72,15 @@ export class FavoritesProvider {
 
     }
     else {
-      console.log('Deleting non-existant favorite', id);
-      return Observable.throw('Deleting non-existant favorite'+ id);
+      console.log('Deleting non-existant favorite', description);
+      return Observable.throw('Deleting non-existant favorite'+ description);
     }
   }
 
+    deleteAllFavorites() {
+  	this.favorites.length = 0;
+  	this.storage.set('favorites', this.favorites);
+  	
+  }
 
 }

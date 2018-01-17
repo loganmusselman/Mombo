@@ -25,7 +25,7 @@ export class MyPostsProvider {
 
   getFeed(): Observable<User> {
     return this.http.get<User>(baseURL + 'users?feed?')
-      .do(data => console.log('All: ' + JSON.stringify(data)))
+      
      .catch(this.handleError);
 
  }

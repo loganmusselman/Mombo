@@ -11,6 +11,9 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+    <button ion-button left (click)="deleteAll()">
+    	<ion-icon name="trash"></ion-icon>
+    </button>
   </ion-navbar>
 
 </ion-header>
@@ -19,16 +22,12 @@
 <ion-content padding>
 <div *ngIf="favorites">
     <ion-list>
-      <ion-item-sliding *ngFor="let favorite of favorites" #item>
+      <ion-item-sliding *ngFor="let favorite of favorites; let i = index" [attr.data-index]="i" #item>
         <ion-item>
-          <ion-thumbnail item-left>
-            <img src="{{ BaseURL + favorite.image }}"/>
-          </ion-thumbnail>
-          <h3>{{ favorite.name }}</h3>
           <p>{{ favorite.description }}</p>
         </ion-item>
         <ion-item-options side="right">
-          <button ion-button color="danger" (click)="deleteFavorite(item, favorite.id)">
+          <button ion-button color="danger" (click)="deleteFavorite(item, favorite.description)">
             <ion-icon name="trash"></ion-icon>
           </button>
         </ion-item-options>
