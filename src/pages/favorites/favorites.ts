@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 
 import { User } from '../../shared/user';
+import { Status } from '../../shared/status';
 import { UserProvider } from '../../providers/user/user';
 import { FavoritesProvider } from '../../providers/favorites/favorites';
 
@@ -22,7 +23,7 @@ import { FavoritesProvider } from '../../providers/favorites/favorites';
 })
 export class FavoritesPage implements OnInit {
 
-	favorites: User[];
+	favorites: User;
   	errMess: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -32,29 +33,35 @@ export class FavoritesPage implements OnInit {
     	private alertCtrl: AlertController,
     	private toastCtrl: ToastController,
   		public favoritesprovider: FavoritesProvider) {
+
+  		this.favorites = [];
+
+  		storage.get('favorites').then(favorites => {
+      if(favorites) {
+        this.favorites = favorites;
+        console.log(this.favorites);
+      } else {
+        console.log('favorites not defined');
+      }
+    });
+
   }
 
   ngOnInit() {
-  	     this.favoritesprovider.getFavorites()
-      .subscribe(favorites => this.favorites = favorites,
-        errmess => this.errMess = errmess);
+  	     
   	      }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FavoritesPage');
   }
 
-  deleteAll() {
-  	this.favoritesprovider.deleteAllFavorites();
-  	console.log(this.favorites);
-  }
 
-  deleteFavorite(item: ItemSliding, description: string) {
-    console.log('Delete', description);
+  deleteFavorite(item: ItemSliding, i) {
+    console.log('Delete', i);
 
     let alert = this.alertCtrl.create({
       
-      message: 'Do you want to delete ' + description,
+      message: 'Do you want to delete this?',
       buttons: [
         {
           text: 'Cancel',
@@ -70,14 +77,15 @@ export class FavoritesPage implements OnInit {
               content: 'Deleting . . .'
             });
             let toast = this.toastCtrl.create({
-              message: 'Dish ' + id + ' deleted successfully',
+              message: 'Favorite deleted successfully',
               duration: 3000
             });
             loading.present();
-            this.favoritesprovider.deleteFavorite(description)
-              .subscribe(favorites => {this.favorites = favorites;
-                loading.dismiss(); toast.present();},
-                errmess => {this.errMess = errmess; loading.dismiss(); });
+            this.favoritesprovider.deleteFavorite(i),
+            	
+            	this.storage.get('favorites'),
+                loading.dismiss(); toast.present(),
+                errmess => {this.errMess = errmess; loading.dismiss(); };
           }
         }
       ]

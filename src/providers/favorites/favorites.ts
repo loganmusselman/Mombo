@@ -18,17 +18,15 @@ export class FavoritesProvider {
 
   favorites: Array<any>;
   users: User[];
-
-
+  
   constructor(public http: HttpClient,
   	private storage: Storage,
     private localNotifications: LocalNotifications,
     private userprovider: UserProvider,
     private postsProvider: MyPostsProvider) {
     console.log('Hello FavoritesProvider Provider');
-  
 
-      this.favorites = [];
+    this.favorites = [];
 
     storage.get('favorites').then(favorites => {
       if(favorites) {
@@ -38,49 +36,46 @@ export class FavoritesProvider {
         console.log('favorites not defined');
       }
     });
+
   }
 
-  addFavorites(description: string): boolean {
-    if(!this.isFavorite(description)){
-      this.favorites.push(description);
+  addFavorites(id: number): boolean {
+    if(!this.isFavorite(id)){
+      this.favorites.push(id);
       this.storage.set('favorites', this.favorites);
 
     }
       this.localNotifications.schedule({
-        description: description,
-        text: description + ' added as a favorite successsfully.'
+        id: id,
+        text: id + ' added as a favorite successsfully.'
       });
     console.log('favorites', this.favorites);
     return true;
   }
 
-  isFavorite(description: string): boolean {
-    return this.favorites.some(el => el === description);
+  isFavorite(id: number): boolean {
+    return this.favorites.some(el => el === id);
   }
 
   getFavorites(): Observable<User[]>{
-    return this.postsProvider.getFeed()
-      .map(feed => feed.filter(feed => this.favorites.some(el => el === feed.description)));
+    return this.postsProvider.getFeed();
+     //.map(users => users.filter(users => this.favorites.some(el => el === description)));
   }
 
-  deleteFavorite(description: string): Observable<User[]> {
-    let index = this.favorites.indexOf(description);
-    if(index >= 0){
-      this.favorites.splice(index, 1);
+  deleteFavorite(i): Observable {
+    
+    if(i >= 0){
+      this.favorites.splice(i, 1);
       this.storage.set('favorites', this.favorites);
-      return this.getFavorites();
+      
 
     }
     else {
-      console.log('Deleting non-existant favorite', description);
-      return Observable.throw('Deleting non-existant favorite'+ description);
+      console.log('Deleting non-existant favorite', i);
+      return Observable.throw('Deleting non-existant favorite'+ i);
     }
   }
 
-    deleteAllFavorites() {
-  	this.favorites.length = 0;
-  	this.storage.set('favorites', this.favorites);
-  	
-  }
+    
 
 }
