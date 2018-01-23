@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 
@@ -11,6 +11,8 @@ import { MyPostsProvider } from '../../providers/my-posts/my-posts';
 import { ProcessHttpmsgProvider } from '../../providers/process-httpmsg/process-httpmsg';
 import { FavoritesProvider } from '../../providers/favorites/favorites';
 import { UserProvider } from '../../providers/user/user';
+
+import { FeedformPage } from '../../pages/feedform/feedform';
 
 import 'rxjs/add/operator/do';
 
@@ -26,10 +28,11 @@ import 'rxjs/add/operator/do';
   selector: 'page-my-posts',
   templateUrl: 'my-posts.html',
 })
-export class MyPostsPage implements OnInit{
+export class MyPostsPage implements OnInit {
 
 	users: User;
   userErrMess: string;
+  Status: Status;
   tab1: any;
   favorite: boolean = false;
 
@@ -39,6 +42,7 @@ export class MyPostsPage implements OnInit{
       public favoritesprovider: FavoritesProvider,
       public userprovider: UserProvider,
       public toastCtrl: ToastController,
+      public modalCtrl: ModalController,
   		@Inject('BaseURL') private BaseURL) {
   }
 
@@ -69,4 +73,12 @@ export class MyPostsPage implements OnInit{
 
   }
 
-}
+
+  newPost(){
+    let modal = this.modalCtrl.create(FeedformPage);
+    modal.present();
+
+    }
+  }
+
+

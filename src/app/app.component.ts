@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { ProfilePage } from '../pages/profile/profile';
 import { MyPostsPage } from '../pages/my-posts/my-posts';
 import { FavoritesPage } from '../pages/favorites/favorites';
+import { LoginPage } from '../pages/login/login';
 
 @Component({
   templateUrl: 'app.html'
@@ -25,6 +26,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Mombo!', component: HomePage },
+      { title: 'Login', component: LoginPage },
       { title: 'Feed', component: ListPage },
       { title: 'Profile', component: ProfilePage },
       { title: 'Posts', component: MyPostsPage },

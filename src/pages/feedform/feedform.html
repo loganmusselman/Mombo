@@ -1,0 +1,29 @@
+<!--
+  Generated template for the FeedformPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-toolbar color="primary-pale">
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancel</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Post Update</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+	<form [formGroup]="feedForm" (ngSubmit)="addFeed()">
+	    <ion-item>
+	      <ion-label stacked>Update: </ion-label>
+	      <ion-textarea formControlName="description" placeholder="Leave Comment Here..."></ion-textarea>
+	    </ion-item>
+	   <button ion-button type="submit" [disabled]="!feedForm.valid">Update</button>
+	</form>
+</ion-content>
