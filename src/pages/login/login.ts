@@ -30,7 +30,7 @@ export class LoginPage {
   			  private storage: Storage,
   			  public userprovider: UserProvider) {
 
-  	this.userprovider.getUsers().then(users => {
+  	storage.get('users').then(users => {
         if(users) {
           this.users = users;
           this.loginForm.patchValue({

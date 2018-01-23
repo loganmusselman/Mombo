@@ -20,8 +20,7 @@ import { Status } from '../../shared/status';
 export class FeedformPage {
 
 	feedForm = FormGroup;
-	feedClass = Status;
-
+	
   constructor(public navCtrl: NavController, public navParams: NavParams,
 		  	public viewCtrl: ViewController, private formBuilder: FormBuilder,
 		    public storage: Storage) {
@@ -39,7 +38,7 @@ export class FeedformPage {
   }
 
   addFeed(){
-  	feedForm.date = new Date().toISOString();
+  	this.feedForm.date = new Date().toISOString();
   	console.log(this.feedForm.getRawValue());
   
   }
