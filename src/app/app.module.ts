@@ -8,7 +8,6 @@ import { IonicStorageModule } from '@ionic/storage';
 //Pages
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { ProfilePage } from '../pages/profile/profile';
 import { MyPostsPage } from '../pages/my-posts/my-posts';
 import { FavoritesPage } from '../pages/favorites/favorites';
@@ -34,7 +33,6 @@ import { baseURL } from '../shared/baseurl';
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
     ProfilePage,
     MyPostsPage,
     FavoritesPage,
@@ -53,7 +51,6 @@ import { baseURL } from '../shared/baseurl';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
     ProfilePage,
     MyPostsPage,
     FavoritesPage,

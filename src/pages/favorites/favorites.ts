@@ -23,7 +23,7 @@ import { FavoritesProvider } from '../../providers/favorites/favorites';
 })
 export class FavoritesPage implements OnInit {
 
-	favorites: User;
+	favorites: User[];
   	errMess: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,

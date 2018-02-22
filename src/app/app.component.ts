@@ -4,7 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { ProfilePage } from '../pages/profile/profile';
 import { MyPostsPage } from '../pages/my-posts/my-posts';
 import { FavoritesPage } from '../pages/favorites/favorites';
@@ -25,7 +24,6 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Mombo!', component: HomePage },
-      { title: 'Feed', component: ListPage },
       { title: 'Profile', component: ProfilePage },
       { title: 'Posts', component: MyPostsPage },
       { title: 'My Favorites', component: FavoritesPage }

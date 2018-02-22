@@ -40,5 +40,8 @@
     <h2>Error></h2>
     <h4> {{ errMess }} </h4>
   </div>
+  <div [hidden]="favorites.length > 0">
+  	<p>It seems that you have not added any posts to your favorites! If you did, this is where they would be.</p>
+  </div>
 
 </ion-content>
